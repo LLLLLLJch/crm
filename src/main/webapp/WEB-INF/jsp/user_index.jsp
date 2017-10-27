@@ -37,12 +37,7 @@
 			}
 			
 			function godelete(){
-				var selectIds = $('#tableId').datagrid('getSelections');
-				var array = [];
-				for(var i in selectIds){
-					array.push(selectIds[i].id);
-				}
-				array=array.join(",");
+				array = Util.getSelected("#tableId");
 				if(array.length == 0){
 					$.messager.alert('系统提示',"请选择您要删除的数据");
 					return;
@@ -54,7 +49,7 @@
 							          {ids:array}, //data
 							           function(data) { //callback
 							           	   $.messager.alert('系统提示',data.msg);
-							           	   if(data.status == 0){
+							           	   if(data.status == Util.SUCCESS){
 							           		   $('#tableId').datagrid('reload');
 							           	   }
 							          },
@@ -68,7 +63,6 @@
 			function toUpdate(){
 				var row = $('#tableId').datagrid('getSelected');
 				if (row){
-						alert(row.id);
 					  $("#updateId").dialog('open');
 					  $('#id').textbox("setValue", row.id);
 					  $('#userName').textbox("setValue", row.userName);

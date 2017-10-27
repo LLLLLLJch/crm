@@ -17,4 +17,5 @@
 <script src="${pageContext.request.contextPath}/resources/thirdlib/jquery-easyui/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <!--easyui核心库-->
 <script src="${pageContext.request.contextPath}/resources/thirdlib/jquery-easyui/jquery.easyui.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="${ctx}/resources/js/EasyUIStudentJs.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/EasyUIStudentJs.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/common.js"></script>
