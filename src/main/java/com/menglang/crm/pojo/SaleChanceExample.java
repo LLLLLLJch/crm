@@ -855,8 +855,8 @@ public class SaleChanceExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeBetween(Date value1, Date value2) {
-            addCriterion("create_time between", value1, value2, "createTime");
+        public Criteria andCreateTimeBetween(String start, String end) {
+            addCriterion("create_time between", start, end, "createTime");
             return (Criteria) this;
         }
 

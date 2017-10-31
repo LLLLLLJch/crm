@@ -1,5 +1,7 @@
 package com.menglang.crm.service;
 
+import java.util.List;
+
 import com.menglang.crm.common.EasyuiDataGridResult;
 import com.menglang.crm.common.SeverResponse;
 import com.menglang.crm.pojo.SaleChance;
@@ -10,9 +12,11 @@ public interface ISaleChanceService {
 	 * @param page 当前页
 	 * @param rows 每页显示的数量
 	 * @param saleChance 查询条件
+	 * @param endDate 
+	 * @param startDate 
 	 * @return
 	 */
-	EasyuiDataGridResult findAll(Integer page, Integer rows, SaleChance saleChance);
+	EasyuiDataGridResult findAll(Integer page, Integer rows, SaleChance saleChance, String startDate, String endDate);
 	/**
 	 * 添加saleChance
 	 * @param saleChance saleChance的信息
@@ -37,5 +41,6 @@ public interface ISaleChanceService {
 	 * @return
 	 */
 	SeverResponse update(SaleChance saleChance);
+	List<SaleChance> findAssignMan();
 
 }

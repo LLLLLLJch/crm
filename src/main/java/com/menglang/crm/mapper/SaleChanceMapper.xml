@@ -425,4 +425,9 @@
       dev_result = #{devResult,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="findAssignMan" resultMap="BaseResultMap">
+  	SELECT DISTINCT assign_man FROM sale_chance WHERE assign_time IS NOT NULL
+  </select>
+  
 </mapper>

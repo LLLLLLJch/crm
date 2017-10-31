@@ -1,5 +1,8 @@
 package com.menglang.crm.service.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -23,9 +26,26 @@ public class SaleChanceServiceImpl implements ISaleChanceService{
 	private SaleChanceMapper saleChanceMapper;
 
 	@Override
-	public EasyuiDataGridResult findAll(Integer page,Integer rows,SaleChance saleChance) {
+	public EasyuiDataGridResult findAll(Integer page,Integer rows,SaleChance saleChance,
+			String startDate,String endDate) {
 		//1、设置分页  
 		PageHelper.startPage(page, rows);
+		Date startTime = null;
+		Date endTime = null;
+		String start = null;
+		String end = null;
+		if(StringUtils.isNotBlank(startDate) & StringUtils.isNotBlank(endDate)){
+			start = startDate.replace("/", "-");
+			end = endDate.replace("/", "-");
+			System.out.println(start);
+			try {
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				startTime = simpleDateFormat.parse(start);
+				endTime = simpleDateFormat.parse(end);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
 		
 		EasyuiDataGridResult result = new EasyuiDataGridResult();
 		SaleChanceExample example = new SaleChanceExample();
@@ -35,6 +55,12 @@ public class SaleChanceServiceImpl implements ISaleChanceService{
 		}
 		if(StringUtils.isNotBlank(saleChance.getOverview())){
 			criteria.andOverviewLike(LikeNameUtil.formartLike(saleChance.getOverview()));
+		}
+		if(StringUtils.isNotBlank(saleChance.getCreateMan())){
+			criteria.andCreateManLike(LikeNameUtil.formartLike(saleChance.getCreateMan()));
+		}
+		if(startTime != null && !startTime.equals("") && endTime != null && !endTime.equals("")){
+			criteria.andCreateTimeBetween(start, end);
 		}
 		if(StringUtils.isNotBlank(saleChance.getCreateMan())){
 			criteria.andCreateManLike(LikeNameUtil.formartLike(saleChance.getCreateMan()));
@@ -55,6 +81,11 @@ public class SaleChanceServiceImpl implements ISaleChanceService{
 	@Override
 	public SeverResponse addSaleChance(SaleChance saleChance) {
 		SaleChanceExample example = new SaleChanceExample();
+		if(StringUtils.isNotBlank(saleChance.getAssignMan())){
+			saleChance.setStatus(1);
+		}else {
+			saleChance.setStatus(0);
+		}
 		if(saleChanceMapper.insert(saleChance)>0){
 			return SeverResponse.createSuccess("添加成功");
 		}
@@ -85,5 +116,10 @@ public class SaleChanceServiceImpl implements ISaleChanceService{
 			return SeverResponse.createSuccess("修改数据成功");
 		}
 		return SeverResponse.createError("修改数据失败");
+	}
+
+	@Override
+	public List<SaleChance> findAssignMan() {
+		return saleChanceMapper.findAssignMan();
 	}
 }

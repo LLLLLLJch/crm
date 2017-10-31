@@ -1,7 +1,14 @@
 package com.menglang.crm.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -17,6 +24,16 @@ public class SaleChanceController {
 	@Autowired
 	private ISaleChanceService saleChanceService;
 
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+		dateFormat.setLenient(false);
+
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+	}
+	
 	@RequestMapping("/index")
 	public String saleChanceIndex() {
 		return "sale_chance_index";
@@ -24,8 +41,9 @@ public class SaleChanceController {
 
 	@RequestMapping("/findAll")
 	@ResponseBody
-	public EasyuiDataGridResult findAll(Integer page, Integer rows, SaleChance saleChance) {
-		return saleChanceService.findAll(page, rows, saleChance);
+	public EasyuiDataGridResult findAll(Integer page, Integer rows, SaleChance saleChance,
+			String startDate,String endDate) {
+		return saleChanceService.findAll(page, rows, saleChance,startDate,endDate);
 	}
 
 	@RequestMapping("/add")
@@ -44,5 +62,10 @@ public class SaleChanceController {
 	@ResponseBody
 	public SeverResponse update(SaleChance saleChance) {
 		return saleChanceService.update(saleChance);
+	}
+	@RequestMapping("/findAssignMan")
+	@ResponseBody
+	public List<SaleChance> findAssignMan() {
+		return saleChanceService.findAssignMan();
 	}
 }

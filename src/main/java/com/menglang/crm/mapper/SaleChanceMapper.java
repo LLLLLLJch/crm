@@ -93,4 +93,9 @@ public interface SaleChanceMapper {
      * @mbggenerated Mon Oct 30 13:41:51 CST 2017
      */
     int updateByPrimaryKey(SaleChance record);
+    /**
+     * 查询指派人名字去除重复
+     * @return
+     */
+	List<SaleChance> findAssignMan();
 }

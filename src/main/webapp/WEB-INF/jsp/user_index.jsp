@@ -122,7 +122,7 @@
 					<input  class="easyui-textbox" id="trueName" prompt="真实姓名"/>
 					<input  class="easyui-textbox" id="email" prompt="邮箱"/>
 					<input  class="easyui-textbox" id="phone" prompt="手机号"/>
-					<select id="roleName" class="easyui-combobox" editable="false" style="width:170px">
+					<select id="roleName" panelHeight='auto' class="easyui-combobox" editable="false" style="width:170px">
 			    				<option value=""></option>
 			    				<option value="系统管理员">系统管理员</option>
 			    				<option value="销售主管">销售主管</option>
@@ -155,7 +155,7 @@
 		    			<td><input id="phone" class="easyui-textbox" type="text" name="phone" data-options="required:true"></input></td>
 		    			<td>角色:</td>
 		    			<td>
-		    				<select id="roleName" class="easyui-combobox" name="roleName" editable="false" style="width:170px">
+		    				<select id="roleName" class="easyui-combobox" panelHeight='auto' name="roleName" editable="false" style="width:170px">
 			    				<option value=""></option>
 			    				<option value="系统管理员">系统管理员</option>
 			    				<option value="销售主管">销售主管</option>
