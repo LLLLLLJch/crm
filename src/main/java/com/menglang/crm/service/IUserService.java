@@ -37,5 +37,9 @@ public interface IUserService {
 	 * @return
 	 */
 	SeverResponse update(User user);
+	SeverResponse checkName(String name);
+	SeverResponse checkPasswordByName(String name, String password);
+	SeverResponse surePassword(String newPassword, String surePassword);
+	SeverResponse updatePassword(User user, String newPassword);
 
 }

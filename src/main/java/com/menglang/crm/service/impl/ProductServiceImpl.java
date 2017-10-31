@@ -30,8 +30,20 @@ public class ProductServiceImpl implements IProductService{
 		EasyuiDataGridResult result = new EasyuiDataGridResult();
 		ProductExample example = new ProductExample();
 		Criteria criteria = example.createCriteria();
-		if(StringUtils.isNotBlank(Product.getProductName())){
-			criteria.andProductNameLike(LikeNameUtil.formartLike(Product.getProductName()));
+		if(StringUtils.isNotBlank(Product.getName())){
+			criteria.andNameLike(LikeNameUtil.formartLike(Product.getName()));
+		}
+		if(StringUtils.isNotBlank(Product.getModel())){
+			criteria.andModelLike(LikeNameUtil.formartLike(Product.getModel()));
+		}
+		if(Product.getPrice() != null){
+			criteria.andPriceEqualTo(Product.getPrice());
+		}
+		if(Product.getStock() != null){
+			criteria.andStockEqualTo(Product.getStock());
+		}
+		if(StringUtils.isNotBlank(Product.getRemark())){
+			criteria.andRemarkLike(LikeNameUtil.formartLike(Product.getRemark()));
 		}
 		//2、执行查询  
 		List<Product> list = ProductMapper.selectByExample(example);

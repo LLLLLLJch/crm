@@ -12,5 +12,18 @@ var Util = {
 			}
 			array=array.join(",");
 			return array;
-		}
+		},
+
+		//格式化时间
+		formatDateTime : function(val, row) {
+			var now = new Date(val);
+			return now.format("yyyy-MM-dd hh:mm:ss");
+		},
+		// 格式化连接
+		formatUrl : function(val, row) {
+			if (val) {
+				return "<a href='" + val + "' target='_blank'>查看</a>";
+			}
+			return "";
+		},
 }

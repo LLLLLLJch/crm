@@ -25,6 +25,7 @@ public class ProductController {
 	@RequestMapping("/findAll")
 	@ResponseBody
 	public EasyuiDataGridResult findAll(Integer page, Integer rows, Product product) {
+		System.out.println(product);
 		return productService.findAll(page, rows, product);
 	}
 

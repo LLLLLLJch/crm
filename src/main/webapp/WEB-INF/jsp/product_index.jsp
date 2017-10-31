@@ -38,9 +38,13 @@
 			
 		}
 		
-		function doSearch(value){
+		function doSearch(){
 			$('#tableId').datagrid('load',{
-				'productName':value
+				'name':$("#name").val(),
+				'model':$("#model").val(),
+				'price':$("#price").val(),
+				'stock':$("#stock").val(),
+				'remark':$("#remark").val()
 			});
 		}
 			
@@ -90,11 +94,11 @@
 					<tr id="target">
 						<th data-options="field:'ck',checkbox:true"></th>
 						<th data-options="field:'id',width:50,align:'center'">编号</th>
-						<th data-options="field:'productName',width:100,align:'center'">产品名称</th>
+						<th data-options="field:'name',width:100,align:'center'">产品名称</th>
 						<th data-options="field:'model',width:100,align:'center'">型号</th>
 						<th data-options="field:'unit',width:100,align:'center'">单位</th>
 						<th data-options="field:'price',width:250,align:'center'">价格</th>
-						<th data-options="field:'store',width:250,align:'center'">库存</th>
+						<th data-options="field:'stock',width:250,align:'center'">库存</th>
 						<th data-options="field:'remark',width:250,align:'center'">备注</th>
 					</tr>
 				</thead>
@@ -102,10 +106,19 @@
 			
 			<!-- toolbar -->
 			<div id="toolbar">
-				<a href="javascript:openaddDialog();" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">添加</a>
-				<a href="javascript:godelete();" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</a>
-				<a href="javascript:openUpdateDialog();" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">修改</a>
-				<input class="easyui-searchbox" data-options="prompt:'用户名',searcher:doSearch"style="width:150px"></input>
+				<div>
+					<a href="javascript:openaddDialog();" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">添加</a>
+					<a href="javascript:godelete();" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</a>
+					<a href="javascript:openUpdateDialog();" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">修改</a>
+				</div>
+				<div>
+					<input  class="easyui-textbox" id="name" prompt="产品名称"/>
+					<input  class="easyui-textbox" id="model" prompt="型号"/>
+					<input  class="easyui-textbox" id="price" prompt="价格"/>
+					<input  class="easyui-textbox" id="stock" prompt="库存"/>
+					<input  class="easyui-textbox" id="remark" prompt="备注"/>
+					<a href="javascript:doSearch();" class="easyui-linkbutton" iconCls="icon-search">搜索</a>
+				</div>
 			</div>
 	</body>
 	<!-- 添加用户隐藏的div开始 -->
@@ -115,7 +128,7 @@
 			    <table cellpadding="5">
 		    		<tr>
 		    			<td>产品名称:</td>
-		    			<td><input id="productName" class="easyui-textbox" type="text" name="productName" data-options="required:true"></input></td>
+		    			<td><input id="name" class="easyui-textbox" type="text" name="name" data-options="required:true"></input></td>
 		    			<td>型号:</td>
 		    			<td><input id="model" class="easyui-textbox" type="text" name="model" data-options="required:true"></input></td>
 		    		</tr>
@@ -127,7 +140,7 @@
 		    		</tr>
 		    		<tr>
 		    			<td>库存:</td>
-		    			<td><input id="store" class="easyui-textbox" type="text" name="store" data-options="required:true"></input></td>
+		    			<td><input id="stock" class="easyui-textbox" type="text" name="stock" data-options="required:true"></input></td>
 		    			<td>备注:</td>
 		    			<td><input id="remark" class="easyui-textbox" type="text" name="remark" data-options="required:true"></input></td>
 		    		</tr>

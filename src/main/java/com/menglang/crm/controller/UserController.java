@@ -45,4 +45,24 @@ public class UserController {
 	public SeverResponse update(User user) {
 		return userService.update(user);
 	}
+	@RequestMapping("/checkName")
+	@ResponseBody
+	public SeverResponse checkName(String name) {
+		return userService.checkName(name);
+	}
+	@RequestMapping("/checkPasswordByName")
+	@ResponseBody
+	public SeverResponse checkPasswordByName(String name,String password) {
+		return userService.checkPasswordByName(name,password);
+	}
+	@RequestMapping("/surePassword")
+	@ResponseBody
+	public SeverResponse surePassword(String newPassword,String surePassword) {
+		return userService.surePassword(newPassword,surePassword);
+	}
+	@RequestMapping("/updatePassword")
+	@ResponseBody
+	public SeverResponse updatePassword(User user,String newPassword) {
+		return userService.updatePassword(user,newPassword);
+	}
 }

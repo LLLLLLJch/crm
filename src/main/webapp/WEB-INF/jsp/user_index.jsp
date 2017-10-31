@@ -38,9 +38,14 @@
 			
 		}
 		
-		function doSearch(value){
+		function doSearch(){
 			$('#tableId').datagrid('load',{
-				'userName':value
+				'name':$("#name").val(),
+				'password':$("#password").val(),
+				'trueName':$("#trueName").val(),
+				'email':$("#email").val(),
+				'phone':$("#phone").val(),
+				'roleName':$("#roleName").val()
 			});
 		}
 			
@@ -94,7 +99,7 @@
 					<tr id="target">
 						<th data-options="field:'ck',checkbox:true"></th>
 						<th data-options="field:'id',width:50,align:'center'">编号</th>
-						<th data-options="field:'userName',width:100,align:'center'">用户名</th>
+						<th data-options="field:'name',width:100,align:'center'">用户名</th>
 						<th data-options="field:'password',width:100,align:'center'">密码</th>
 						<th data-options="field:'trueName',width:100,align:'center'">真是姓名</th>
 						<th data-options="field:'email',width:250,align:'center'">邮箱</th>
@@ -106,10 +111,26 @@
 			
 			<!-- toolbar -->
 			<div id="toolbar">
-				<a href="javascript:openaddDialog();" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">添加</a>
-				<a href="javascript:godelete();" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</a>
-				<a href="javascript:openUpdateDialog();" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">修改</a>
-				<input class="easyui-searchbox" data-options="prompt:'用户名',searcher:doSearch"style="width:150px"></input>
+				<div>
+					<a href="javascript:openaddDialog();" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">添加</a>
+					<a href="javascript:godelete();" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</a>
+					<a href="javascript:openUpdateDialog();" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">修改</a>
+				</div>
+				<div>
+					<input  class="easyui-textbox" id="name" prompt="用户名"/>
+					<input  class="easyui-textbox" id="password" prompt="密码"/>
+					<input  class="easyui-textbox" id="trueName" prompt="真实姓名"/>
+					<input  class="easyui-textbox" id="email" prompt="邮箱"/>
+					<input  class="easyui-textbox" id="phone" prompt="手机号"/>
+					<select id="roleName" class="easyui-combobox" editable="false" style="width:170px">
+			    				<option value=""></option>
+			    				<option value="系统管理员">系统管理员</option>
+			    				<option value="销售主管">销售主管</option>
+			    				<option value="客户经理">客户经理</option>
+			    				<option value="高管">高管</option>
+		    				</select>
+					<a href="javascript:doSearch();" class="easyui-linkbutton" iconCls="icon-search">搜索</a>
+				</div>
 			</div>
 	</body>
 	<!-- 添加用户隐藏的div开始 -->
@@ -119,7 +140,7 @@
 			    <table cellpadding="5">
 		    		<tr>
 		    			<td>用户名:</td>
-		    			<td><input id="userName" class="easyui-textbox" type="text" name="userName" data-options="required:true"></input></td>
+		    			<td><input id="name" class="easyui-textbox" type="text" name="name" data-options="required:true"></input></td>
 		    			<td>密码:</td>
 		    			<td><input id="password" class="easyui-textbox" type="text" name="password" data-options="required:true"></input></td>
 		    		</tr>
@@ -134,7 +155,7 @@
 		    			<td><input id="phone" class="easyui-textbox" type="text" name="phone" data-options="required:true"></input></td>
 		    			<td>角色:</td>
 		    			<td>
-		    				<select id="roleName" class="easyui-combobox" name="roleName" style="width:170px">
+		    				<select id="roleName" class="easyui-combobox" name="roleName" editable="false" style="width:170px">
 			    				<option value=""></option>
 			    				<option value="系统管理员">系统管理员</option>
 			    				<option value="销售主管">销售主管</option>
