@@ -1,5 +1,7 @@
 package com.menglang.crm.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,5 +66,10 @@ public class UserController {
 	@ResponseBody
 	public SeverResponse updatePassword(User user,String newPassword) {
 		return userService.updatePassword(user,newPassword);
+	}
+	@RequestMapping("/findManger")
+	@ResponseBody
+	public List<User> findManger() {
+		return userService.findManger();
 	}
 }

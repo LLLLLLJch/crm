@@ -86,6 +86,7 @@ public class SaleChanceServiceImpl implements ISaleChanceService{
 		}else {
 			saleChance.setStatus(0);
 		}
+		saleChance.setDevResult(0);
 		if(saleChanceMapper.insert(saleChance)>0){
 			return SeverResponse.createSuccess("添加成功");
 		}
@@ -121,5 +122,33 @@ public class SaleChanceServiceImpl implements ISaleChanceService{
 	@Override
 	public List<SaleChance> findAssignMan() {
 		return saleChanceMapper.findAssignMan();
+	}
+
+	@Override
+	public EasyuiDataGridResult findStatusIsOne(Integer page, Integer rows) {
+		PageHelper.startPage(page, rows);
+		EasyuiDataGridResult result = new EasyuiDataGridResult();
+		SaleChanceExample example = new SaleChanceExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andStatusEqualTo(1);
+		//2、执行查询  
+		List<SaleChance> list = saleChanceMapper.selectByExample(example);
+		//3、取分页后结果  
+		PageInfo<SaleChance> pageInfo = new PageInfo<SaleChance>(list);  
+		int total = (int)pageInfo.getTotal();
+		result.setTotal(total);
+		result.setRows(list);
+		return result;
+	}
+
+	@Override
+	public SeverResponse stopDevelopment(Integer id) {
+		SaleChance saleChance = new SaleChance();
+		saleChance.setId(id);
+		saleChance.setDevResult(3);
+		if(saleChanceMapper.updateByPrimaryKey(saleChance)>0){
+			return SeverResponse.createSuccess("终止成功");
+		}
+		return SeverResponse.createError("终止失败");
 	}
 }

@@ -1,6 +1,8 @@
 package com.menglang.crm.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -154,5 +156,33 @@ public class UserServiceImpl implements IUserService{
 			return SeverResponse.createSuccess("修改成功");
 		}
 		return SeverResponse.createError("修改失败");
+	}
+
+	@Override
+	public User checkUser(String name, String password, String roleName) {
+		UserExample example = new UserExample();
+		Criteria criteria = example.createCriteria();
+		if(StringUtils.isNotBlank(name)){
+			criteria.andNameEqualTo(name);
+		}
+		if(StringUtils.isNotBlank(password)){
+			criteria.andPasswordEqualTo(password);
+		}
+		if(StringUtils.isNotBlank(roleName)){
+			criteria.andRoleNameEqualTo(roleName);
+		}
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("name", name);
+		map.put("password", password);
+		map.put("roleName", roleName);
+		return userMapper.checkName(map);
+	}
+
+	@Override
+	public List<User> findManger() {
+		UserExample example = new UserExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andRoleNameEqualTo("客户经理");
+		return userMapper.selectByExample(example);
 	}
 }

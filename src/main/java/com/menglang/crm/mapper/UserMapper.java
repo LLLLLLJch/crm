@@ -3,6 +3,8 @@ package com.menglang.crm.mapper;
 import com.menglang.crm.pojo.User;
 import com.menglang.crm.pojo.UserExample;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
@@ -93,4 +95,6 @@ public interface UserMapper {
      * @mbggenerated Mon Oct 30 13:41:51 CST 2017
      */
     int updateByPrimaryKey(User record);
+
+	User checkName(Map<String, String> map);
 }

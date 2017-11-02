@@ -315,4 +315,9 @@
       role_name = #{roleName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <select id="checkName" parameterType="Map" resultMap="BaseResultMap">
+  	select * from user where name=#{name}and password=#{password} and role_name = #{roleName}
+  </select>
+  
 </mapper>

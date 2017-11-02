@@ -42,5 +42,7 @@ public interface ISaleChanceService {
 	 */
 	SeverResponse update(SaleChance saleChance);
 	List<SaleChance> findAssignMan();
+	EasyuiDataGridResult findStatusIsOne(Integer page, Integer rows);
+	SeverResponse stopDevelopment(Integer id);
 
 }

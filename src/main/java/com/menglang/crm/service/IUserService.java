@@ -1,5 +1,7 @@
 package com.menglang.crm.service;
 
+import java.util.List;
+
 import com.menglang.crm.common.EasyuiDataGridResult;
 import com.menglang.crm.common.SeverResponse;
 import com.menglang.crm.pojo.User;
@@ -41,5 +43,7 @@ public interface IUserService {
 	SeverResponse checkPasswordByName(String name, String password);
 	SeverResponse surePassword(String newPassword, String surePassword);
 	SeverResponse updatePassword(User user, String newPassword);
+	User checkUser(String name, String password, String roleName);
+	List<User> findManger();
 
 }
