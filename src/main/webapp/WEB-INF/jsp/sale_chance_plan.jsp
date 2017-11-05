@@ -60,11 +60,11 @@
 			
 			//可以修改添加开发信息
 			function openCusDevPlanTab(id){
-				window.parent.openTab('客户开发计划项管理','${ctx}/cusDevPlan/index.action?saleChanceId='+id,'icon-khkfjh');
+				window.parent.openTab('客户开发计划项管理'+id+'','${ctx}/cusDevPlan/index.action?saleChanceId='+id,'icon-khkfjh');
 			}
 			//只能查看开发信息
 			function openCusDevPlanInfoTab(id){
-				window.parent.openTab('查看客户开发计划项','${ctx}/cusDevPlan/index.action?saleChanceId='+id+'&show=true','icon-khkfjh');
+				window.parent.openTab('查看客户开发计划项'+id+'','${ctx}/cusDevPlan/index.action?saleChanceId='+id+'&show=true','icon-khkfjh');
 			}
 		</script>
 	</head>

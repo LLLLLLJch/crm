@@ -155,7 +155,7 @@ public class UserServiceImpl implements IUserService{
 		if(userMapper.updateByExampleSelective(user2, example)>0){
 			return SeverResponse.createSuccess("修改成功");
 		}
-		return SeverResponse.createError("修改失败");
+		return SeverResponse.createError("原密码错误");
 	}
 
 	@Override

@@ -11,29 +11,20 @@
 <script type="text/javascript">
 	$(function() {
 		$.post(
-			"${ctx}/saleChance/findById.action",
-			{id:'${param.saleChanceId}'},
+			"${ctx}/customer/findById.action",
+			{id:'${param.customerId}'},
 			function(data){
-				$('#customerNameId').val(data.customerName);
-				$('#chanceSourceId').val(data.chanceSource);
-				$('#linkManId').val(data.linkMan);
-				$('#linkPhoneId').val(data.linkPhone);
-				$('#successRateId').val(data.successRate);
-				$('#overviewId').val(data.overview);
-				$('#descriptionId').val(data.description);
-				$('#createManId').val(data.createMan);
-				$('#createTime').val(data.createTime);
-				$('#assignManId').val(data.assignMan);
-				$('#assignTimeId').val(data.assignTime);
+				$('#numId').val(data.num);
+				$('#nameId').val(data.name);
 			},
 			"json"
 		);
 		
 		$("#datagrid").edatagrid({
-		 	url:'${ctx}/cusDevPlan/findAll.action?saleChanceId=${param.saleChanceId}',//只查询已分配咨询师的
-		 	saveUrl: "${ctx}/cusDevPlan/add.action?saleChanceId=${param.saleChanceId}",
-			updateUrl:"${ctx}/cusDevPlan/update.action?saleChanceId=${param.saleChanceId}",
-			destroyUrl:"${ctx}/cusDevPlan/deleteById.action",
+		 	url:'${ctx}/customerLinkman/findAll.action?customerId=${param.customerId}',//只查询已分配咨询师的
+		 	saveUrl: "${ctx}/customerLinkman/add.action?customerId=${param.customerId}",
+			updateUrl:"${ctx}/customerLinkman/update.action?customerId=${param.customerId}",
+			destroyUrl:"${ctx}/customerLinkman/deleteById.action",
 			method:'post',
 			fit:true,
 			singleSelect:true,
@@ -44,19 +35,19 @@
 			columns:[[    
 			     {field:'ck',checkbox:true},   
 			     {field:'id',title:'编号',width:50,align:'center'},    
-			     {field:'planDate',title:'客户姓名',width:100,align:'center',editor:{type:'datebox',options:{required:true}}},    
-			     {field:'planItem',title:'性别',width:80,align:'center',editor:{type:'validatebox',options:{required:true}}},    
-			     {field:'exeAffect',title:'职位',width:80,align:'center',editor:{type:'validatebox',options:{required:true}}},  
-			     {field:'exeAffect',title:'办公电话',width:80,align:'center',editor:{type:'validatebox',options:{required:true}}},  
-			     {field:'exeAffect',title:'手机',width:80,align:'center',editor:{type:'validatebox',options:{required:true}}},  
+			     {field:'linkName',title:'客户姓名',width:100,align:'center',editor:{type:'validatebox',options:{required:true}}},    
+			     {field:'gender',title:'性别',width:80,align:'center',editor:{type:'validatebox',options:{required:true}}},    
+			     {field:'position',title:'职位',width:80,align:'center',editor:{type:'validatebox',options:{required:true}}},  
+			     {field:'officePhone',title:'办公电话',width:80,align:'center',editor:{type:'validatebox',options:{required:true}}},  
+			     {field:'phone',title:'手机',width:80,align:'center',editor:{type:'validatebox',options:{required:true}}},  
 			]]
 		});
 	});
 	
 	function stopDevelopemnt(){
 		$.post(
-			"${ctx}/saleChance/stopDevelopment.action",
-			{id:'${param.saleChanceId}'},
+			"${ctx}/customerLinkman/stopDevelopment.action",
+			{id:'${param.customerLinkmanId}'},
 			function(data){
 				if(data.status == Util.SUCCESS){
 					$.messager.alert('系统提示',data.msg);
@@ -71,7 +62,7 @@
 </script>
 <body>
 	<!-- 营销机会信息面板  开始 -->
-	<div id="p" class="easyui-panel" title="销售机会信息" style="width: 700px;height: 400px;padding: 10px">
+	<div id="p" class="easyui-panel" title="销售机会信息" style="width: 700px;height: 200px;padding: 10px">
 	 	<table cellspacing="8px">
 	   		<tr>
 	   			<td>客户编号：</td>
@@ -94,8 +85,6 @@
 		 	<a href="javascript:$('#datagrid').edatagrid('destroyRow')" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</a>
 			<a href="javascript:$('#datagrid').edatagrid('saveRow');$('#datagrid').edatagrid('reload')" class="easyui-linkbutton" iconCls="icon-save" plain="true">保存</a>
 			<a href="javascript:$('#datagrid').edatagrid('cancelRow')" class="easyui-linkbutton" data-options="iconCls:'icon-undo',plain:true" onclick="reject()">撤销</a>
-			<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-undo',plain:true" onclick="reject()">开发成功</a>
-			<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-undo',plain:true" onclick="stopDevelopemnt()">终止开发</a>
 	 	</c:if>
 	 </div>
 	</div>

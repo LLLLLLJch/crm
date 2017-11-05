@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.menglang.crm.pojo.User;
 import com.menglang.crm.service.IUserService;
@@ -32,6 +33,13 @@ public class LoginController {
 			session.setAttribute("user", user);
 			return "redirect:/index/index.action";
 		}
-		return null;
+		return "fail";
+	}
+	@RequestMapping("/goexit")
+	public String goexit(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.removeAttribute("user");
+		return "redirect:/login/goLoginPage.action";
+		
 	}
 }

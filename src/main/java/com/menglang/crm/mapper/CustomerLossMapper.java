@@ -1,7 +1,11 @@
 package com.menglang.crm.mapper;
 
+import com.menglang.crm.pojo.Customer;
 import com.menglang.crm.pojo.CustomerLoss;
 import com.menglang.crm.pojo.CustomerLossExample;
+import com.menglang.crm.pojo.CustomerOrder;
+import com.menglang.crm.vo.CustomerComposition;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -93,4 +97,5 @@ public interface CustomerLossMapper {
      * @mbggenerated Mon Oct 30 13:41:51 CST 2017
      */
     int updateByPrimaryKey(CustomerLoss record);
+
 }

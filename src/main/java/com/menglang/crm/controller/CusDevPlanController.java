@@ -26,7 +26,7 @@ public class CusDevPlanController {
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 		dateFormat.setLenient(false);
 

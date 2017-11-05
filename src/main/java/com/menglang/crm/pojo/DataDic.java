@@ -96,4 +96,11 @@ public class DataDic {
     public void setDataDicValue(String dataDicValue) {
         this.dataDicValue = dataDicValue == null ? null : dataDicValue.trim();
     }
+
+	@Override
+	public String toString() {
+		return "DataDic [id=" + id + ", dataDicName=" + dataDicName + ", dataDicValue=" + dataDicValue + "]";
+	}
+    
+    
 }

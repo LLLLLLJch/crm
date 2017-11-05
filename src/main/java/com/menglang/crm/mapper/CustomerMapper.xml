@@ -552,4 +552,30 @@
       status = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+ <!--  查询已经流失的客户 -->
+  <select id="findLossCustomer" resultMap="BaseResultMap">
+       SELECT <include refid="Base_Column_List" />
+       FROM customer t1 WHERE id NOT IN (SELECT customer_id FROM customer_order WHERE DATE_ADD(order_date,INTERVAL 6 MONTH) > NOW()) AND t1.status=0;
+  </select>
+  
+  <select id="findCustomerContribution" parameterType="Map" resultType="com.menglang.crm.vo.CustomerContribution">
+  	SELECT c.name,SUM(oi.sum) AS totalContribution
+	FROM customer AS c LEFT JOIN customer_order AS co 
+	ON c.id=co.customer_id LEFT JOIN order_item AS oi
+	ON oi.order_id=co.id
+	<where>
+		<if test="name!=null and name!='' ">
+			and c.name like '%${name}%'
+		</if>
+	</where>
+	 GROUP BY c.id  ORDER BY totalContribution DESC
+  </select>
+  
+  <select id="findCustomerComposition" resultType="com.menglang.crm.vo.CustomerComposition">
+  	SELECT LEVEL as customerLevel,COUNT(LEVEL) as num FROM customer GROUP BY LEVEL
+  </select>
+  
+  <select id="customerServiceAnalysis" resultType="com.menglang.crm.vo.CustomerServiceAnalysis">
+  	SELECT service_type AS serviceType,COUNT(service_type) AS num FROM customer_service GROUP BY service_type
+  </select>
 </mapper>

@@ -44,7 +44,7 @@
 			columns:[[    
 			     {field:'ck',checkbox:true},   
 			     {field:'id',title:'编号',width:50,align:'center'},    
-			     {field:'planDate',title:'日期',width:100,align:'center',editor:{type:'datebox',options:{required:true}}},    
+			     {field:'planDate',title:'日期',width:100,align:'center',editor:{type:'datetimebox',options:{required:true}}},    
 			     {field:'planItem',title:'计划内容',width:80,align:'center',editor:{type:'validatebox',options:{required:true}}},    
 			     {field:'exeAffect',title:'执行结果',width:80,align:'center',editor:{type:'validatebox',options:{required:true}}}  
 			]]

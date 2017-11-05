@@ -224,4 +224,11 @@ public class CustomerLinkman {
     public void setPhone(String phone) {
         this.phone = phone == null ? null : phone.trim();
     }
+
+	@Override
+	public String toString() {
+		return "CustomerLinkman [id=" + id + ", customerId=" + customerId + ", linkName=" + linkName + ", gender="
+				+ gender + ", position=" + position + ", officePhone=" + officePhone + ", phone=" + phone + "]";
+	}
+    
 }

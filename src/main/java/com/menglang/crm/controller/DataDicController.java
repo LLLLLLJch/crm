@@ -57,5 +57,12 @@ public class DataDicController {
 	public List<DataDic> findLevel() {
 		return dataDicService.findLevel();
 	}
+	@RequestMapping("/findServiceType")
+	@ResponseBody
+	public List<DataDic> findServiceType() {
+		List<DataDic> list = dataDicService.findServiceType();
+		System.out.println(list);
+		return list;
+	}
 	
 }

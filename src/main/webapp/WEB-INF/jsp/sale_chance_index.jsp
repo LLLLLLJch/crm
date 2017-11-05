@@ -56,7 +56,7 @@
 				url = "${ctx}/saleChance/add.action";
 				$('#form').form("clear");
 				$("#createTimeId").textbox('setValue',Util.getCurrentDateTime());
-				$("#createManId").textbox('setValue',"21");
+				$("#createManId").textbox('setValue',"${user.name}");
 			}
 			
 			function openUpdateDialog(){

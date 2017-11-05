@@ -41,5 +41,6 @@ public interface IDataDicService {
 	SeverResponse update(DataDic dataDic);
 	List<DataDic> findDataDicName();
 	List<DataDic> findLevel();
+	List<DataDic> findServiceType();
 
 }

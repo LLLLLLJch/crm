@@ -331,4 +331,5 @@
       loss_reason = #{lossReason,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
 </mapper>

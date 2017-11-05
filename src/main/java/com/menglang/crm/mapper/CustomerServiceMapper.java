@@ -93,4 +93,5 @@ public interface CustomerServiceMapper {
      * @mbggenerated Mon Oct 30 13:41:51 CST 2017
      */
     int updateByPrimaryKey(CustomerService record);
+
 }

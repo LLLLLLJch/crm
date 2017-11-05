@@ -126,18 +126,24 @@
 					]]
 				});
 		});
+			
+		function openCustomerLinkMan(){
+			var row = $('#tableId').datagrid('getSelected');
+			window.parent.openTab('客户联系人管理','${ctx}/customerLinkman/index.action?customerId='+row.id+'','icon-add');
+		}
+		function openCustomerContact(){
+			var row = $('#tableId').datagrid('getSelected');
+			window.parent.openTab('客户交往记录管理','${ctx}/customerContact/index.action?customerId='+row.id+'','icon-add');
+		}
+		function openCustomerOrder(){
+			var row = $('#tableId').datagrid('getSelected');
+			window.parent.openTab('历史订单查看','${ctx}/customerOrder/index.action?customerId='+row.id+'','icon-add');
+		}
 		</script>
 	</head>
 	
 	<body>
-		<table id="tableId" class="easyui-datagrid"  fitColumns="true" toolbar="#toolbar" pagination="true"
-			data-options="fit:true,singleSelect:false,url:'${ctx}/customer/findAll.action',method:'get'">
-				<thead>
-					<tr id="target">
-						
-					</tr>
-				</thead>
-			</table>
+		<table id="tableId"></table>
 			
 			<!-- toolbar -->
 			<div id="toolbar">
@@ -145,9 +151,9 @@
 					<a href="javascript:openaddDialog();" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">添加</a>
 					<a href="javascript:godelete();" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</a>
 					<a href="javascript:openUpdateDialog();" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">修改</a>
-					<a href="" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">联系人管理</a>
-					<a href="" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">交往记录管理</a>
-					<a href="" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">历史订单查看</a>
+					<a href="javaScript:openCustomerLinkMan();" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">联系人管理</a>
+					<a href="javaScript:openCustomerContact();" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">交往记录管理</a>
+					<a href="javaScript:openCustomerOrder();" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">历史订单查看</a>
 				</div>
 				<div>
 					客户名称：<input  class="easyui-textbox" id="name"/>
@@ -178,13 +184,21 @@
 		    		</tr>
 		    		<tr>
 		    			<td>客户经理:</td>
-		    			<td><input id="managerNameId" class="easyui-combobox" name="managerName"
-		    				valueField='managerName' textField='trueName' panelHeight='auto'  url="${ctx}/user/findManger.action" data-options="required:true"></input>
-		    				<font color="red">*</font></td>
+		    			<td><input id="managerNameId"  class="easyui-combobox" name="managerName" 
+		    			data-options="
+		    			valueField:'trueName',
+		    			textField:'trueName',
+		    			panelHeight:'auto',
+		    			url:'${ctx}/user/findManger.action'"/><font color="red">*</font></td>
 		    			<td>客户等级:</td>
 		    			<td><input id="levelId" class="easyui-combobox" name="level" 
-		    				valueField='level'textField='dataDicValue' panelHeight='auto'  url="${ctx}/dataDic/findLevel.action" data-options="required:true"></input>
+		    				valueField='dataDicValue'textField='dataDicValue' panelHeight='auto'  url="${ctx}/dataDic/findLevel.action" data-options="required:true"></input>
 		    				<font color="red">*</font></td>
+		    		</tr>
+		    		<tr>
+		    			<td>客户编号:</td>
+		    			<td><input id="numId" class="easyui-textbox" name="num" data-options="required:true"></input>
+		    			<font color="red">*</font></td>
 		    		</tr>
 		    		<tr>
 		    			<td>客户满意度:</td>

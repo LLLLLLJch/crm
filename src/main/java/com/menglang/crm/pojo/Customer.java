@@ -704,4 +704,15 @@ public class Customer {
     public void setStatus(Integer status) {
         this.status = status;
     }
+
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", num=" + num + ", name=" + name + ", region=" + region + ", managerName="
+				+ managerName + ", level=" + level + ", satisfy=" + satisfy + ", credit=" + credit + ", address="
+				+ address + ", postCode=" + postCode + ", phone=" + phone + ", fax=" + fax + ", webSite=" + webSite
+				+ ", licenceNo=" + licenceNo + ", legalPerson=" + legalPerson + ", bankroll=" + bankroll + ", turnover="
+				+ turnover + ", bankName=" + bankName + ", bankAccount=" + bankAccount + ", localTaxNo=" + localTaxNo
+				+ ", nationalTaxNo=" + nationalTaxNo + ", status=" + status + "]";
+	}
+    
 }

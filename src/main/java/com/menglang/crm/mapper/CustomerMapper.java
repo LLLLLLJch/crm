@@ -2,7 +2,12 @@ package com.menglang.crm.mapper;
 
 import com.menglang.crm.pojo.Customer;
 import com.menglang.crm.pojo.CustomerExample;
+import com.menglang.crm.vo.CustomerComposition;
+import com.menglang.crm.vo.CustomerServiceAnalysis;
+
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface CustomerMapper {
@@ -93,4 +98,12 @@ public interface CustomerMapper {
      * @mbggenerated Mon Oct 30 13:41:51 CST 2017
      */
     int updateByPrimaryKey(Customer record);
+
+	List<Customer> findLossCustomer();
+
+	List<Customer> findCustomerContribution(Map<String, Object> map);
+
+	List<CustomerComposition> findCustomerComposition();
+
+	List<CustomerServiceAnalysis> customerServiceAnalysis();
 }

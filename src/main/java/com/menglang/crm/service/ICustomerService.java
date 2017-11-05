@@ -1,8 +1,13 @@
 package com.menglang.crm.service;
 
+import java.util.List;
+
 import com.menglang.crm.common.EasyuiDataGridResult;
 import com.menglang.crm.common.SeverResponse;
 import com.menglang.crm.pojo.Customer;
+import com.menglang.crm.vo.CustomerComposition;
+import com.menglang.crm.vo.CustomerContribution;
+import com.menglang.crm.vo.CustomerServiceAnalysis;
 
 public interface ICustomerService {
 	/**
@@ -37,5 +42,20 @@ public interface ICustomerService {
 	 * @return
 	 */
 	SeverResponse update(Customer customer);
+	void checkCustomerLoss();
+	/**
+	 * 客户贡献
+	 * @param page
+	 * @param rows
+	 * @param contribution
+	 * @return
+	 */
+	EasyuiDataGridResult findCustomerContribution(Integer page, Integer rows, CustomerContribution contribution);
+	/**
+	 * 客户构成分析
+	 * @return
+	 */
+	SeverResponse<List<CustomerComposition>> findCustomerComposition();
+	SeverResponse<List<CustomerServiceAnalysis>> customerServiceAnalysis();
 
 }
