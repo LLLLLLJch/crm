@@ -2,6 +2,8 @@ package com.menglang.crm.service;
 
 import java.util.List;
 
+import javax.servlet.ServletOutputStream;
+
 import com.menglang.crm.common.EasyuiDataGridResult;
 import com.menglang.crm.common.SeverResponse;
 import com.menglang.crm.pojo.SaleChance;
@@ -44,5 +46,6 @@ public interface ISaleChanceService {
 	List<SaleChance> findAssignMan();
 	EasyuiDataGridResult findStatusIsOne(Integer page, Integer rows);
 	SeverResponse stopDevelopment(Integer id);
+	void exportExcel(ServletOutputStream outputStream);
 
 }

@@ -92,6 +92,19 @@
 			function doclose(){
 				$('#dialog').dialog('close');
 			}
+			
+			function inputExcel(){
+				$.post(
+					"${ctx}/user/inputExcel.action",
+					function(data){
+						if(data.status == Util.SUCCESS){
+							$.messager.alert('系统提示','导入成功');
+						}else{
+							$.messager.alert('系统提示','导入失败');
+						}
+					}
+				);	
+			}
 		</script>
 	</head>
 	
@@ -118,6 +131,7 @@
 					<a href="javascript:openaddDialog();" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">添加</a>
 					<a href="javascript:godelete();" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</a>
 					<a href="javascript:openUpdateDialog();" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">修改</a>
+					<a href="javascript:inputExcel();" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">导入数据</a>
 				</div>
 				<div>
 					<input  class="easyui-textbox" id="name" prompt="用户名"/>

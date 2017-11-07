@@ -139,6 +139,7 @@
 					<a href="javascript:openaddDialog();" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">添加</a>
 					<a href="javascript:godelete();" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</a>
 					<a href="javascript:openUpdateDialog();" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">修改</a>
+					<a href="${ctx}/saleChance/exportExcel.action" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">导出表格</a>
 				</div>
 				<div>
 					客户名称：<input  class="easyui-textbox" id="customerName"/>

@@ -4,6 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -92,4 +95,22 @@ public class SaleChanceController {
 		return saleChanceService.stopDevelopment(id);
 		
 	}
+	@RequestMapping("/exportExcel")
+	public void exportExcel(HttpServletResponse response) {
+		try {
+			/*//1、查找用户列表
+			List<SaleChance> list = saleChanceService.findAll();
+			//2、导出
+*/			response.setContentType("application/x-execl");
+			response.setHeader("Content-Disposition", "attachment;filename=" + new String("用户列表.xls".getBytes(), "ISO-8859-1"));
+			ServletOutputStream outputStream = response.getOutputStream();
+			saleChanceService.exportExcel(outputStream);
+			if(outputStream != null){
+				outputStream.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+ 	}
+	
 }

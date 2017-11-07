@@ -1,7 +1,13 @@
 package com.menglang.crm.controller;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.List;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -71,5 +77,46 @@ public class UserController {
 	@ResponseBody
 	public List<User> findManger() {
 		return userService.findManger();
+	}
+	@RequestMapping("/inputExcel")
+	@ResponseBody
+	public SeverResponse inputExcel() {
+		FileInputStream inputStream;
+		try {
+			inputStream = new FileInputStream("E:\\poitest\\测试1.xls");
+			//读取工作薄
+			HSSFWorkbook workbook = new HSSFWorkbook(inputStream);
+			//读取工作表
+			HSSFSheet sheet = workbook.getSheetAt(0);
+			//读取行
+			HSSFRow row = sheet.getRow(0);
+			//读取单元格
+			User user = new User();
+			//读取单元格
+			for (int i = 0; i < 6; i++) {
+				HSSFCell cell = row.getCell(i);
+				cell.setCellType(HSSFCell.CELL_TYPE_STRING);  
+				String value = cell.getStringCellValue();
+				if(i == 0){
+					user.setName(value);
+				}else if (i == 1) {
+					user.setPassword(value);
+				}else if (i == 2) {
+					user.setTrueName(value);
+				}else if (i == 3) {
+					user.setPhone(value);
+				}else if (i == 4) {
+					user.setEmail(value);
+				}else {
+					user.setRoleName(value);
+				}
+			}
+			workbook.close();
+			inputStream.close();
+			return userService.addUser(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
