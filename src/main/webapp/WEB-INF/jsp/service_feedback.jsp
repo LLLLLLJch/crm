@@ -113,6 +113,10 @@
 					}
 				})
 			});
+			
+			function doclose(){
+				$('#dialog').dialog('close');
+			}
 		</script>
 	</head>
 	

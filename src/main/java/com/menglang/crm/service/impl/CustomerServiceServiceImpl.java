@@ -33,7 +33,7 @@ public class CustomerServiceServiceImpl implements ICustomerServiceService{
 		EasyuiDataGridResult result = new EasyuiDataGridResult();
 		CustomerServiceExample example = new CustomerServiceExample();
 		Criteria criteria = example.createCriteria();
-		criteria.andAssignerIsNull();
+		criteria.andStatusEqualTo("新创建");
 		//2、执行查询  
 		List<CustomerService> list = customerServiceMapper.selectByExample(example);
 		//3、取分页后结果  

@@ -1,54 +1,59 @@
-﻿<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@include file="../common/header.jsp"%>
-<html>
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html>
 
-    <head>
+<head>
 
-        <meta charset="utf-8">
-        <title>登录(Login)</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
-
-        <!-- CSS -->
-        <link rel="stylesheet" href="${ctx}/resources/thirdlib/login/assets/css/reset.css">
-        <link rel="stylesheet" href="${ctx}/resources/thirdlib/login/assets/css/supersized.css">
-        <link rel="stylesheet" href="${ctx}/resources/thirdlib/login/assets/css/style.css">
-		<script src="${ctx}/resources/thirdlib/login/assets/js/jquery-1.8.2.min.js" ></script>
-        <script src="${ctx}/resources/thirdlib/login/assets/js/supersized.3.2.7.min.js" ></script>
-        <script src="${ctx}/resources/thirdlib/login/assets/js/supersized-init.js" ></script>
-        <script src="${ctx}/resources/thirdlib/login/assets/js/scripts.js" ></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-        <!--[if lt IE 9]>
-            <script src="assets/js/html5.js"></script>
-        <![endif]-->
+    <title> - 登录</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
 
-    </head>
+    <link rel="shortcut icon" href="${ctx}/resources/thirdlib/hadmin/favicon.ico"> 
+    <link href="${ctx}/resources/bootstrap.min.css" rel="stylesheet">
+    <link href="${ctx}/resources/thirdlib/hadmin/css/font-awesome.css" rel="stylesheet">
 
-    <body style="background-image:url(${ctx}/resources/thirdlib/login/assets/img/3.jpg)">
+    <link href="${ctx}/resources/thirdlib/hadmin/css/animate.css" rel="stylesheet">
+    <link href="${ctx}/resources/thirdlib/hadmin/css/style.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+    <script>if(window.top !== window.self){ window.top.location = window.location;}</script>
+</head>
 
-        <div class="page-container">
-            <h1>登录</h1>
-            <form action="${ctx}/login/login.action" method="post">
-                <input name="name" prompt="用户名" class="easyui-textbox" style="width:300px"><br/>
-                <input name="password" class="easyui-passwordbox" prompt="Password" iconWidth="28" style="width:300px"><br/> 
-                <select name="roleName" class="easyui-combobox" style="width:200px;"><br/>
-                	<option value=""><font color="red">请选择</font></option>
-                	<option value="系统管理员 "><font color="red">系统管理员 </font></option>
-                	<option value="销售主管">销售主管</option>
-                	<option value="客户经理">客户经理</option>
-                	<option value="高管">高管</option>
-                </select>
-                <button type="submit" class="submit_button">登录</button>
-                <div class="error"><span>+</span></div>
-            </form>          
-        </div>	
-    </body>
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen  animated fadeInDown">
+        <div>
+            <form class="m-t" role="form" method="post" action="${ctx}/login/login.action">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="用户名" required="" name="name">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="密码" required="" name = "password">
+                </div>
+                <div>
+                	<select name="roleName" class="easyui-combobox" style="width:200px;"><br/>
+	                	<option value=""><font color="red">请选择</font></option>
+	                	<option value="系统管理员 "><font color="red">系统管理员 </font></option>
+	                	<option value="销售主管">销售主管</option>
+	                	<option value="客户经理">客户经理</option>
+	                	<option value="高管">高管</option>
+	                </select>
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 全局js -->
+     <script src="${ctx}/resources/thirdlib/H+/js/jquery-2.1.1.js"></script>
+    <script src="${ctx}/resources/thirdlib/H+/js/bootstrap.min.js"></script>
+</body>
 
 </html>
-

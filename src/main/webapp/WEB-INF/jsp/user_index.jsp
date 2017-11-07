@@ -89,6 +89,9 @@
 
 			}
 			
+			function doclose(){
+				$('#dialog').dialog('close');
+			}
 		</script>
 	</head>
 	
@@ -167,7 +170,7 @@
 		    	</table>
 			    <div id="dialog-button">   
 			    	<a href="javascript:dosave();" class="easyui-linkbutton" iconCls = "icon-add">提交</a>
-			    	<a  class="easyui-linkbutton" iconCls = "icon-cancel">关闭</a>
+			    	<a href="javascript:doclose();" class="easyui-linkbutton" iconCls = "icon-cancel">关闭</a>
 			    </div>    
 			</form>  
     	</div>

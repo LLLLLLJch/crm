@@ -77,7 +77,6 @@
 							    				arr.push({value:data[i].num,
 							    				name:data[i].serviceType});
 											}
-							    			return arr;
 							    			console.log(arr);
 							    		}else{
 							    			$.messager.alert('系统提示','查询失败');

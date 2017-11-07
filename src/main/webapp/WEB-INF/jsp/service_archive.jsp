@@ -51,7 +51,7 @@
 			
 			var url;
 			function openaddDialog(){
-				$("#dialog").dialog("open").dialog("setTitle","添加信息");
+				$("#dialog").dialog("open").dialog("setTitle","查看客户服务详情");
 				var row = $('#tableId').datagrid('getSelected');
 				if(row == null){
 					$.messager.alert('系统提示','请选择对象');
@@ -107,6 +107,10 @@
 					}
 				})
 			});
+			
+			function doclose(){
+				$('#dialog').dialog('close');
+			}
 		</script>
 	</head>
 	

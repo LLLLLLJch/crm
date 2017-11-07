@@ -109,6 +109,10 @@
 					}
 				})
 			});
+			
+			function doclose(){
+				$('#dialog').dialog('close');
+			}
 		</script>
 	</head>
 	
@@ -155,7 +159,7 @@
 		    			<td><input class="easyui-combobox" name="assigner" id="assignerId" 
 		    			 data-options="
 						 	url:'${ctx}/user/findManger.action',
-						 	valueField: 'assigner',
+						 	valueField: 'trueName',
 						 	textField: 'trueName',
 					 		panelHeight:'auto' "></input></td>
 		    			<td>分配时间:</td>
@@ -164,7 +168,7 @@
 		    	</table>
 			    <div id="dialog-button">   
 			    	<a href="javascript:dosave();" class="easyui-linkbutton" iconCls = "icon-add">提交</a>
-			    	<a  class="easyui-linkbutton" iconCls = "icon-cancel">关闭</a>
+			    	<a href="javascript:doclose();" class="easyui-linkbutton" iconCls = "icon-cancel">关闭</a>
 			    </div>    
 			</form>  
     	</div>

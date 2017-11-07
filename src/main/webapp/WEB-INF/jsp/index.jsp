@@ -180,11 +180,7 @@
 					href="javascript:openTab('客户服务分析','${ctx}/customer/goCustomerServiceAnalysisPage.action','icon-khfwfx')"
 					class="easyui-linkbutton"
 					data-options="plain:true,iconCls:'icon-khfwfx'"
-					style="width: 150px;">客户服务分析</a> <a
-					href="javascript:openTab('客户流失分析','khlsfx.jsp','icon-khlsfx')"
-					class="easyui-linkbutton"
-					data-options="plain:true,iconCls:'icon-khlsfx'"
-					style="width: 150px;">客户流失分析</a>
+					style="width: 150px;">客户服务分析</a> 
 			</div>
 			<div title="基础数据管理" data-options="iconCls:'icon-jcsjgl'"
 				style="padding: 10px">
@@ -217,7 +213,10 @@
 	</div>
 		<div data-options="region:'center',iconCls:'icon-ok'">
 			<div id="tabsId" class="easyui-tabs" data-options="fit:true" style="width:500px;height:250px;">   
-			    <div data-options="title:'首页'"style="padding:20px;display:none; background-image:url(${ctx}/resources/img/u=924351836,356584454&fm=27&gp=0.jpg)">   
+			    <div data-options="title:'首页'">  
+			    	<div align="center" style="padding-top: 100px">
+						<font color="red" size="10">欢迎使用</font>
+					</div> 
 			    </div>   
 			</div>  
 		</div>
