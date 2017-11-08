@@ -1,9 +1,12 @@
 package com.menglang.crm.controller;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.List;
 
+import org.apache.commons.net.ftp.parser.NetwareFTPEntryParser;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -12,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.menglang.crm.common.EasyuiDataGridResult;
 import com.menglang.crm.common.SeverResponse;
@@ -80,40 +84,48 @@ public class UserController {
 	}
 	@RequestMapping("/inputExcel")
 	@ResponseBody
-	public SeverResponse inputExcel() {
-		FileInputStream inputStream;
+	public SeverResponse inputExcel(MultipartFile file) {
+		//C:\fakepath\新建文本文档.txt
 		try {
-			inputStream = new FileInputStream("E:\\poitest\\测试1.xls");
-			//读取工作薄
-			HSSFWorkbook workbook = new HSSFWorkbook(inputStream);
-			//读取工作表
-			HSSFSheet sheet = workbook.getSheetAt(0);
-			//读取行
-			HSSFRow row = sheet.getRow(0);
-			//读取单元格
-			User user = new User();
-			//读取单元格
-			for (int i = 0; i < 6; i++) {
-				HSSFCell cell = row.getCell(i);
-				cell.setCellType(HSSFCell.CELL_TYPE_STRING);  
-				String value = cell.getStringCellValue();
-				if(i == 0){
-					user.setName(value);
-				}else if (i == 1) {
-					user.setPassword(value);
-				}else if (i == 2) {
-					user.setTrueName(value);
-				}else if (i == 3) {
-					user.setPhone(value);
-				}else if (i == 4) {
-					user.setEmail(value);
-				}else {
-					user.setRoleName(value);
+			 //获取输入流 CommonsMultipartFile 中可以直接得到文件的流
+            InputStream inputStream=file.getInputStream();
+            System.out.println(inputStream);
+            System.out.println(file.getOriginalFilename());
+			if(file.getOriginalFilename().indexOf(".xls")>0){
+				//读取工作薄
+				HSSFWorkbook workbook = new HSSFWorkbook(inputStream);
+				//读取工作表
+				HSSFSheet sheet = workbook.getSheetAt(0);
+				//读取行
+				HSSFRow row = sheet.getRow(0);
+				//读取单元格
+				User user = new User();
+				//读取单元格
+				for (int i = 0; i < 6; i++) {
+					HSSFCell cell = row.getCell(i);
+					cell.setCellType(HSSFCell.CELL_TYPE_STRING);  
+					String value = cell.getStringCellValue();
+					if(i == 0){
+						user.setName(value);
+					}else if (i == 1) {
+						user.setPassword(value);
+					}else if (i == 2) {
+						user.setTrueName(value);
+					}else if (i == 3) {
+						user.setPhone(value);
+					}else if (i == 4) {
+						user.setEmail(value);
+					}else {
+						user.setRoleName(value);
+					}
 				}
+				workbook.close();
+				inputStream.close();
+				return userService.addUser(user);
+			}else {
+				return SeverResponse.createError("请选择正确的文件");
 			}
-			workbook.close();
-			inputStream.close();
-			return userService.addUser(user);
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

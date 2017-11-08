@@ -41,5 +41,5 @@
 		<!-- 设置Mapper扫描包 -->
 		<property name="basePackage" value="com.menglang.crm.mapper" />
 	</bean>
-
+	
 </beans>

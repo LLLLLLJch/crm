@@ -93,8 +93,11 @@
 				$('#dialog').dialog('close');
 			}
 			
-			function inputExcel(){
-				$.post(
+			/* function inputExcel(){
+				var file = $("#file").val();
+				var fileName = getFileName(file);
+				alert(fileName);
+				 $.post(
 					"${ctx}/user/inputExcel.action",
 					function(data){
 						if(data.status == Util.SUCCESS){
@@ -103,7 +106,24 @@
 							$.messager.alert('系统提示','导入失败');
 						}
 					}
-				);	
+				);	 
+			} */
+			
+			function inputExcel(){
+				var fileName = $('#file').val();
+				console.log(fileName);
+				$.post(
+					"${ctx}/user/inputExcel.action",
+					{"fileName":fileName},
+					function(data){
+						if(data.status == Util.SUCCESS){
+							$.messager.alert('系统提示',data.msg);
+						}else{
+							$.messager.alert('系统提示',data.msg);
+						}
+					},
+					"json"
+				);
 			}
 		</script>
 	</head>
@@ -132,6 +152,10 @@
 					<a href="javascript:godelete();" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</a>
 					<a href="javascript:openUpdateDialog();" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">修改</a>
 					<a href="javascript:inputExcel();" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">导入数据</a>
+					<form name="serForm" action="${ctx}/user/inputExcel.action" method="post"  enctype="multipart/form-data">
+						<input type="file" name="file" id="file"/>
+						<input type="submit" value="导入"/>
+					</form>
 				</div>
 				<div>
 					<input  class="easyui-textbox" id="name" prompt="用户名"/>
@@ -146,7 +170,7 @@
 			    				<option value="客户经理">客户经理</option>
 			    				<option value="高管">高管</option>
 		    				</select>
-					<a href="javascript:doSearch();" class="easyui-linkbutton" iconCls="icon-search">搜索</a>
+					<a href="javascript:doSearch(name);" class="easyui-linkbutton" iconCls="icon-search">搜索</a>
 				</div>
 			</div>
 	</body>
@@ -189,5 +213,4 @@
 			</form>  
     	</div>
     	<!-- 添加用户隐藏的div结束 -->
-
 </html>
