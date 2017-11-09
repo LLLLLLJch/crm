@@ -125,10 +125,19 @@
 					"json"
 				);
 			}
+			
+			function doprint(obj){
+				  var newWindow=window.open("打印窗口","_blank");
+				  var docStr = obj.innerHTML;
+				  newWindow.document.write(docStr);
+				  newWindow.document.close();
+				  newWindow.print();
+				  newWindow.close(); 
+			}
 		</script>
 	</head>
 	
-	<body>
+	<body id="print">
 		<table id="tableId" class="easyui-datagrid" fitColumns="true" toolbar="#toolbar" pagination="true"
 			data-options="fit:true,singleSelect:false,url:'${ctx}/user/findAll.action',method:'get'">
 				<thead>
@@ -144,7 +153,6 @@
 					</tr>
 				</thead>
 			</table>
-			
 			<!-- toolbar -->
 			<div id="toolbar">
 				<div>
@@ -156,6 +164,8 @@
 						<input type="file" name="file" id="file"/>
 						<input type="submit" value="导入"/>
 					</form>
+					<a href="javascript:doprint(document.getElementById('print'));" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">打印</a>
+					<!-- <button onclick="doprint(document.getElementById('print'))">打 印</button> -->
 				</div>
 				<div>
 					<input  class="easyui-textbox" id="name" prompt="用户名"/>
